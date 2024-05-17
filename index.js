@@ -4,13 +4,24 @@
 // 2. Create a variable, sum, and set it to the sum of the two cards
 
 // 2. Use getRandomCard() to set the values of firstCard and secondCard
-let firstcard = getRandomCard() ;//10;
-let secondCard =  getRandomCard(); //4;
-let cards = [firstcard,secondCard] //array -operate order list items
-let sum = firstcard + secondCard; //14
+let cards = [] //array -operate order list items
+let sum = 0; //14
 let hasblackjack = false;
-let isAlive = true;
+let isAlive = false;
 let message = "";
+
+//USING OBJECT
+// 2. Create the player object. Give it two keys, name and chips, and set their values
+let player={
+    names :  "Per: ",
+    chips : 145
+}
+// 3. Grab ahold of the player-el paragraph and store it in a variable called playerEl
+// 4. Render the player's name and chips in playerEl
+let playerEl=document.getElementById("player-el");
+playerEl.textContent= player.names + "$"+player.chips;
+
+console.log(cards);
 // 1. Store the message-el paragraph in a variable called messageEl
 // 2. Store the sum paragraph in a variable called sumEl
 // let sumEl = document.getElementById("sum-el");
@@ -41,6 +52,13 @@ function getRandomCard() {
     }
 }
 function startGame(){
+    isAlive = true;
+    // Generate two random numbes
+    // Re-assign the cards and sum variables so that the game can start
+   let firstCard = getRandomCard();
+    let secondCard =  getRandomCard(); //4;
+    cards = [firstCard,secondCard];
+    sum = firstCard + secondCard;
     renderGame();
 }
 function renderGame() {
@@ -72,6 +90,7 @@ function renderGame() {
 
     messageEl.textContent = message;
 }
+
 // 2. Create a function newCard() that logs out "Drawing a new card from the deck!"
 function newCard() {
     //  sumEl.textContent = "Sum:";
@@ -79,16 +98,55 @@ function newCard() {
     //  messageEl.textContent= "Want to play a round?";
        // 1. Create a card variable, and hard code its value to a number (2-11)
     // 2. Use getRandomCard() to set the values of firstCard and secondCard
-       let card =  getRandomCard();  //10;
     // 2. Add the new card to the sum variable
     // sum = sum + card;
-    sum += card;
-        // Push the card to the cards array
-    cards.push(card);
+    // Push the card to the cards array
     // 3. Call startGame()
-    renderGame ();
-    console.log(cards);
+    // Only allow the player to get a new card if she IS alive and does NOT have Blackjack
+    if(isAlive ===true && hasblackjack ===false){
+        let card =  getRandomCard();  //10;
+        sum += card;
+        cards.push(card);
+        renderGame ();
+        console.log(cards);
+        
+    }
+    
 }
+
+// Create a person object that contains three keys: name, age, and county.
+// Use yourself as an example to set the values for name, age, and country
+let person ={
+    name: "Per",
+    age: 35,
+    country: "Norway"
+}
+function logData(){
+
+    console.log(person.name + " is "+person.age +" years old and live in " + person.country); 
+}
+logData();
+// Create a function, logData(), that uses the person object to create a
+// string in the following format: 
+// "Per is 35 years old and lives in Norway"
+
+// Call the logData() function to verify that it works
+
+// Create an object that represents an airbnb castle listing.
+// It should contain at least one boolean, one string, one number, and one array
+// Log out at least two of the keys using the dot notation
+let airbnb={
+    isBuilding:true,
+    title: "airbnb castle listing",
+    numbers: 3,
+    sections: ["firstHouse","secondHouse","thirdHouse"],
+    image:["img/castle1.png","img/castle2.png"]
+}
+
+console.log(airbnb.image);
+console.log(airbnb.numbers);
+console.log(airbnb.title);
+
 // console.log(totalCard);
 console.log(hasblackjack);
 // Try to modify the expression so that we get a range from 1 to 6
@@ -99,7 +157,28 @@ console.log(randomNumber);
 function rollDice() {
     return Math.floor(Math.random() * 6) + 1;
 }
-
+     //LOGICAL OPERATOR
+// AND , OR & NOT OPERATOR
+let hasCompletedCourse = true;
+let giveCertificate = true;
+//AND OPERATOR
+if(hasCompletedCourse && giveCertificate){
+generateCertificate()
+}
+function generateCertificate() {
+    console.log("Generating certificate...")
+}
+// Create two boolean variables, likesDocumentaries and likesStartups
+// Use an OR statement (||) to call recommendMovie() if either of those variables are true
+// OR OPERATOR
+let likesDocumentaries = false;
+let likesStartups = true;
+if(likesDocumentaries || likesStartups){
+    recommendMovie();
+} 
+function recommendMovie() {
+    console.log("Hey, check out this new film we think you will like!")
+}
 let Dice = rollDice();
 console.log(Dice);
 
